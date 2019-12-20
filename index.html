@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping List App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="shopping-list">
+
+        <div class="header">
+            <h1>
+                {{header.toLocaleUpperCase()}}
+            </h1>
+            <button v-if="state === 'default'" @click="changeState('edit')" class="btn btn-header">Add Item</button>
+            <button v-else @click="changeState('default')" class="btn btn-header">Cancel</button>
+        </div>
+
+        <!-- <input id="form-input" type="text" v-model="header"> -->
+
+        <div v-if="state === 'edit'">
+            <input id="form-input" type="text" placeholder="Add an item!" @keyup.enter="saveItem" v-model="newItem">
+            <button class="waves-effect light-blue btn" id="add-btn" @click="saveItem">Save Item</button>
+        </div>
+
+        <ul>
+            <li v-for="item in items">
+                {{item}}
+            </li>
+        </ul>
+        <p v-if="items.length === 0">Nice job! You've bought all the items!</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var sh = new Vue({
+            el: '#shopping-list',
+            data: {
+                state: 'default',
+                header: 'Shopping List App!',
+                newItem: '', // v-on: can be replaced by @
+                items: [
+                    '10 party hats',
+                    'Helmets',
+                    'Lunch for pup!'
+                ]
+            },
+            methods: {
+                saveItem: function () {
+                    this.items.push(this.newItem);
+                },
+                changeState: function (newState) {
+                    this.state = newState;
+                    this.newItem = '';
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

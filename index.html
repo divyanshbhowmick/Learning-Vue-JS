@@ -11,83 +11,13 @@
 </head>
 
 <body>
-    <div id="shopping-list">
-        <a v-bind:href="newItem" target="_blank">Dynamic Link</a>
-        <div class="header">
-            <h1 v-bind:title="title"> {{header ? header.toLocaleUpperCase() : 'welcome!'}} </h1>
-            <button v-if="state === 'default'" @click="changeState('edit')" class="btn btn-header">Add Item</button>
-            <button v-else @click="changeState('default')" class="btn btn-header">Cancel</button>
-        </div>
-        <!-- <input id="form-input" type="text" v-model="header"> -->
-
-        <div v-if="state === 'edit'" class="add-item-form">
-            <input id="form-input" type="text" placeholder="Add an item!" @keyup.enter="saveItem" v-model="newItem">
-            <p>{{characterCount}}/200</p>
-            <button class="waves-effect light-blue btn" id="add-btn" @click="saveItem"
-                :disabled="newItem.length === 0">Save Item</button>
-        </div>
-
-        <ul>
-            <li v-for="item in reversedItems" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">
-                {{item.label}}
-            </li>
-        </ul>
-        <p v-if="items.length === 0">Nice job! You've bought all the items!</p>
+    <div id="app">
+        <h1>Vue Components</h1>
+        <click-counter></click-counter>
     </div>
-    <script src="https://unpkg.com/vue"></script>
-    <script>
-        var sh = new Vue({
-            el: '#shopping-list',
-            data: {
-                state: 'default',
-                header: 'Shopping List App!',
-                title: 'Shooping list app title',
-                newItem: '', // v-on: can be replaced by @
-                items: [
-                    {
-                        label: 'Item 1: 10 party hats',
-                        purchased: true
-                    },
-                    {
-                        label: 'Item 2: Helmets',
-                        purchased: false
-                    },
-                    {
-                        label: 'Item 3: Lunch for pup!',
-                        purchased: true
-                    }
-                ]
-            },
-            methods: {
-                saveItem: function () {
-                    this.items.push({
-                        label: this.newItemFormated,
-                        purchased: false
-                    });
-                },
-                changeState: function (newState) {
-                    this.state = newState;
-                    this.newItem = '';
-                },
-                togglePurchased: function (item) {
-                    item.purchased = !item.purchased;
-                }
-            },
-            computed: { // Computed properties: These are only use to apply some filters to the data and then return it. It is similar as function but doesn't accepts an input
-                newItemFormated: function () {
-                    var length = this.items.length + 1;
-                    return "Item " + length + ": " + this.newItem;
-                },
-                reversedItems: function () {
-                    return this.items.slice(0).reverse();
-                },
-                characterCount: function(){
-                    return this.newItem.length;
-                }
-            }
 
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>

@@ -13,16 +13,13 @@
 <body>
     <div id="app">
         <h1>Vue Components</h1>
-        <click-counter></click-counter>
-        <click-counter></click-counter>
-        <click-counter></click-counter>
-        <click-counter></click-counter>
+        <!-- Binding the name prop, Props are the attributes which we can pass to the component-->
+        <plan v-for="plan in plans" :name="plan"></plan> 
     </div>
-    <!-- Counter template for the click counter.. -->
-    <script type="text/x-template" id="click-counter-template">
-        <div>
-            <p>The value of the counter is: </p>
-            <button @click="count++">{{count}}</button>
+    <!-- Counter template for the plan.. -->
+    <script type="text/x-template" id="plan-template">
+        <div id="plan">
+            {{name}}
             <br/>
         </div>
     </script>

@@ -13,10 +13,19 @@
 <body>
     <div id="app">
         <h1>Vue Components</h1>
-        <!-- Binding the name prop, Props are the attributes which we can pass to the component-->
-        <plan v-for="plan in plans" :name="plan"></plan> 
+        <plan name="asdff"></plan>
+        <plan name="asdf"></plan>
+        <plan-picker></plan-picker>
     </div>
-    <!-- Counter template for the plan.. -->
+
+    <script type="text/x-template" id="plan-picker-template">
+        <div>
+            <!-- Binding the name prop, Props are the attributes which we can pass to the component-->
+            <plan v-for="plan in plans" :key="plan.key" :name="plan.title"></plan>
+        </div>
+    </script>
+
+    <!-- template for the plan.. -->
     <script type="text/x-template" id="plan-template">
         <div id="plan">
             {{name}}

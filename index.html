@@ -14,7 +14,18 @@
     <div id="app">
         <h1>Vue Components</h1>
         <click-counter></click-counter>
+        <click-counter></click-counter>
+        <click-counter></click-counter>
+        <click-counter></click-counter>
     </div>
+    <!-- Counter template for the click counter.. -->
+    <script type="text/x-template" id="click-counter-template">
+        <div>
+            <p>The value of the counter is: </p>
+            <button @click="count++">{{count}}</button>
+            <br/>
+        </div>
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="app.js"></script>

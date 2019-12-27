@@ -13,22 +13,20 @@
 <body>
     <div id="app">
         <h1>Vue Components</h1>
-        <plan name="asdff"></plan>
-        <plan name="asdf"></plan>
         <plan-picker></plan-picker>
     </div>
 
     <script type="text/x-template" id="plan-picker-template">
         <div>
             <!-- Binding the name prop, Props are the attributes which we can pass to the component-->
-            <plan v-for="plan in plans" :key="plan.key" :name="plan.title"></plan>
+            <plan v-for="plan in plans" :key="plan.key" :name="plan.title" @select="selectPlan" :selected-plan="selectedPlan"></plan>
         </div>
     </script>
 
     <!-- template for the plan.. -->
     <script type="text/x-template" id="plan-template">
-        <div id="plan">
-            {{name}}
+        <div @click="changeState()" id="plan" :class={strikeout:isSelected}>
+            <button class="btn" id="add-btn">{{name}}</button>
             <br/>
         </div>
     </script>

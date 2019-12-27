@@ -7,6 +7,19 @@ let planComponent = {
       type: String,
       default: "Basic",
       required: true
+    },
+    selectedPlan: {
+      type: String
+    }
+  },
+  methods: {
+    changeState(plan) {
+      this.$emit("select", this.name);
+    }
+  },
+  computed: {
+    isSelected() {
+      return this.name === this.selectedPlan;
     }
   }
 };
@@ -32,8 +45,14 @@ Vue.component("plan-picker", {
           key: 3,
           title: "The Couple"
         }
-      ]
+      ],
+      selectedPlan: null
     };
+  },
+  methods: {
+    selectPlan(plan) {
+      this.selectedPlan = plan;
+    }
   }
 });
 

@@ -66,6 +66,7 @@ p {
 
 .strikeout {
   text-decoration: line-through;
+  background-color: cadetblue;
 }
 
 li {
